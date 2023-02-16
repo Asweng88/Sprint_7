@@ -37,7 +37,6 @@ public class TestPositiveGetApiCourier {
         int statusCode = response.extract().statusCode();
         id = response.extract().path("id");
         assertEquals("Ошибка авторизации курьера",statusCode,HttpStatus.SC_OK);
-        System.out.println("Курьер найден. Статус " + statusCode + " Id " + id);
 
     }
 

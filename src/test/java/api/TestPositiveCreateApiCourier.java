@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestPositiveCreateApiCourier {
 
@@ -23,8 +24,7 @@ public class TestPositiveCreateApiCourier {
         int statusCode = response.extract().statusCode();
         Boolean body = response.extract().path("ok");
         assertEquals("Курьер не создан",statusCode, HttpStatus.SC_CREATED);
-        assertEquals("Курьер не создан",body, true);
-        System.out.println("Курьер создан. Статусы " + statusCode + " " + body);
+        assertTrue("Курьер не создан",body);
 
     }
 

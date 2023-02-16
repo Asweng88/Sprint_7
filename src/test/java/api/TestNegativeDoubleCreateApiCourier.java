@@ -8,6 +8,7 @@ import org.junit.Test;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TestNegativeDoubleCreateApiCourier {
 
@@ -25,15 +26,13 @@ public class TestNegativeDoubleCreateApiCourier {
         int statusCode = response.extract().statusCode();
         boolean bodyPositive = response.extract().path("ok");
         assertEquals("Курьер не создан",statusCode, HttpStatus.SC_CREATED);
-        assertEquals("Курьер не создан",bodyPositive, true);
-        System.out.println("Курьер создан. Статусы " + statusCode + " " + bodyPositive);
+        assertTrue("Курьер не создан",bodyPositive);
 
         response = api.createCourier(login,password,firstName);
         statusCode = response.extract().statusCode();
         String bodyNegative = response.extract().path("message");
         assertEquals("Ошибка валидации", statusCode, 409);
         assertEquals("Ошибка валидации", bodyNegative, "Этот логин уже используется");
-        System.out.println("Курьер не прошел валидацию. Статусы " + statusCode + " " + bodyNegative);
 
     }
 
@@ -44,15 +43,13 @@ public class TestNegativeDoubleCreateApiCourier {
         int statusCode = response.extract().statusCode();
         boolean bodyPositive = response.extract().path("ok");
         assertEquals("Курьер не создан",statusCode, HttpStatus.SC_CREATED);
-        assertEquals("Курьер не создан",bodyPositive, true);
-        System.out.println("Курьер создан. Статусы " + statusCode + " " + bodyPositive);
+        assertTrue("Курьер не создан",bodyPositive);
 
         response = api.createCourier(login,newPassword,newFirstName);
         statusCode = response.extract().statusCode();
         String bodyNegative = response.extract().path("message");
         assertEquals("Ошибка валидации", statusCode, 409);
         assertEquals("Ошибка валидации", bodyNegative, "Этот логин уже используется");
-        System.out.println("Курьер не прошел валидацию. Статусы " + statusCode + " " + bodyNegative);
 
     }
     @After
@@ -67,7 +64,7 @@ public class TestNegativeDoubleCreateApiCourier {
         statusCode = response.extract().statusCode();
         boolean bodyPositive = response.extract().path("ok");
         assertEquals("Ошибка удаления курьера",statusCode,HttpStatus.SC_OK);
-        System.out.println("Курьер удален.");
+
     }
 
 }

@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class TestGetApiOrders {
@@ -23,8 +24,7 @@ public class TestGetApiOrders {
         int statusCode = response.extract().statusCode();
         Object orders = response.extract().path("orders");
         assertEquals("Ошибка получения заявок",statusCode,HttpStatus.SC_OK);
-        assertEquals("Ответ не является списком",orders instanceof ArrayList,true);
-        System.out.println("Заяка создана. Статус " + statusCode + " " + orders );
+        assertTrue("Ответ не является списком",orders instanceof ArrayList);
 
     }
 

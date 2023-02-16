@@ -38,13 +38,12 @@ public class TestPositivePostApiOrders {
     @Parameterized.Parameters
     public static Object[][] getPositivePostApiOrders() {
         //Сгенерируй тестовые данные
-        Object[][] objects = {
+        return new Object[][] {
                 {"Naruto", "Udzumaki", "Konoha, 142 apt.", "4", "+7 800 355 35 35", 5, "2020-06-06", "Saske, come back to Konoha", new Object[]{"BLACK ","GREY"}},
                 {"Naruto", "Udzumaki", "Konoha, 142 apt.", "4", "+7 800 355 35 35", 5, "2020-06-06", "Saske, come back to Konoha", new Object[]{"BLACK "}},
                 {"Naruto", "Udzumaki", "Konoha, 142 apt.", "4", "+7 800 355 35 35", 5, "2020-06-06", "Saske, come back to Konoha", new Object[]{"GREY"}},
                 {"Naruto", "Udzumaki", "Konoha, 142 apt.", "4", "+7 800 355 35 35", 5, "2020-06-06", "Saske, come back to Konoha", new Object[]{}},
         };
-        return objects;
     }
 
 
@@ -58,7 +57,6 @@ public class TestPositivePostApiOrders {
         int statusCode = response.extract().statusCode();
         int track = response.extract().path("track");
         assertEquals("Ошибка создания заявки",statusCode,HttpStatus.SC_CREATED);
-        System.out.println("Заяка создана. Статус " + statusCode + " track " + track);
 
     }
 

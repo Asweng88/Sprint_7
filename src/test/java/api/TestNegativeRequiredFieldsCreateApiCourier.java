@@ -15,15 +15,15 @@ public class TestNegativeRequiredFieldsCreateApiCourier {
     private final String login;
     private final String password;
     private final String firstName;
-    private final int сode;
-    private final String messeges;
+    private final int code;
+    private final String messages;
 
-    public TestNegativeRequiredFieldsCreateApiCourier(String login, String password, String firstName, int сode, String messeges) {
+    public TestNegativeRequiredFieldsCreateApiCourier(String login, String password, String firstName, int code, String messages) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
-        this.сode = сode;
-        this.messeges = messeges;
+        this.code = code;
+        this.messages = messages;
     }
 
         @Parameterized.Parameters
@@ -44,11 +44,8 @@ public class TestNegativeRequiredFieldsCreateApiCourier {
         ValidatableResponse response = api.createCourier(login,password,firstName);
         int statusCode = response.extract().statusCode();
         String body = response.extract().path("message");
-        assertEquals("Ошибка валидации", statusCode, сode);
-        assertEquals("Ошибка валидации", body, messeges);
-        System.out.println("Курьер не прошел валидацию. Статусы " + statusCode + " " + body);
-
-
+        assertEquals("Ошибка валидации", statusCode, code);
+        assertEquals("Ошибка валидации", body, messages);
     }
 
 }

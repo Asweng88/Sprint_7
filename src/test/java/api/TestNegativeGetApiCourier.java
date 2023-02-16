@@ -21,17 +21,17 @@ public class TestNegativeGetApiCourier {
     private final String loginIn;
     private final String passwordIn;
     private final String firstName;
-    private final int сode;
-    private final String messeges;
+    private final int code;
+    private final String messages;
 
-    public TestNegativeGetApiCourier(String login, String loginIn, String passwordIn, String password, String firstName, int сode, String messeges) {
+    public TestNegativeGetApiCourier(String login, String loginIn, String passwordIn, String password, String firstName, int code, String messages) {
         this.login = login;
         this.password = password;
         this.loginIn = loginIn;
         this.passwordIn = passwordIn;
         this.firstName = firstName;
-        this.сode = сode;
-        this.messeges = messeges;
+        this.code = code;
+        this.messages = messages;
     }
 
     @Parameterized.Parameters
@@ -44,10 +44,8 @@ public class TestNegativeGetApiCourier {
         };
     }
 
-
     private final ApiCourier api = new ApiCourier();
     private ValidatableResponse response;
-    private int id;
 
     @Before
     public void createCourier(){
@@ -63,9 +61,8 @@ public class TestNegativeGetApiCourier {
         response = api.loginCourier(loginIn,passwordIn);
         int statusCode = response.extract().statusCode();
         String message = response.extract().path("message");
-        assertEquals("Ошибка валидации",statusCode,сode);
-        assertEquals("Ошибка валидации",message, messeges);
-        System.out.println("Проверка валидации " + statusCode + " messeges: " + messeges);
+        assertEquals("Ошибка валидации",statusCode,code);
+        assertEquals("Ошибка валидации",message, messages);
 
     }
 
